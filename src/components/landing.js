@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as Icons from "react-bootstrap-icons";
 import Tooth from "../assets/tooth.svg";
 import gsap from "gsap";
@@ -67,7 +67,7 @@ const Footer = () => {
 };
 
 function LandingPage() {
-  // gsap.registerPlugin(SplitText);
+  const [count, setCount] = useState(4);
   useEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -98,26 +98,68 @@ function LandingPage() {
     );
   }, []);
 
+  const skipImage = () => {
+    gsap.fromTo(
+      ".down-scroll svg",
+      { ease: "power2.out", y: -10, opacity: 0.5 },
+      { ease: "power2.inOut", y: 10, opacity: 1 }
+    );
+    for (let i = count; i > 0; --i) {
+      gsap.to(`._${i}`, {
+        ease: "power2.out",
+        rotation: -90,
+        y: -1000,
+        duration: 3,
+      });
+      return setCount(count - 1);
+    }
+    console.log("move to the next page");
+  };
+
   return (
     <div className='landing-page'>
       <Header />
       <div className='landing-page-container'>
         <h2>Our advantages</h2>
         <div className='introduction-pics'>
-          <div className='pic-details'>
+          <div className='pic-details _1'>
             <img src={Img5} alt='p-1' />
+            <div className='pic-details_info'>
+              <p>
+                <Icons.PersonBoundingBox />
+              </p>
+              <p>Personalized Care</p>
+            </div>
           </div>
-          <div className='pic-details'>
+          <div className='pic-details _2'>
             <img src={Img2} alt='p-1' />
+            <div className='pic-details_info'>
+              <p>
+                <Icons.Diagram2 />
+              </p>
+              <p>Modern Solutions</p>
+            </div>
           </div>
-          <div className='pic-details'>
+          <div className='pic-details _3'>
             <img src={Img3} alt='p-1' />
+            <div className='pic-details_info'>
+              <p>
+                <Icons.HandIndex />
+              </p>
+              <p>Convenience</p>
+            </div>
           </div>
-          <div className='pic-details'>
+          <div className='pic-details _4'>
             <img src={Img4} alt='p-1' />
+            <div className='pic-details_info'>
+              <p>
+                <Icons.Gear />
+              </p>
+              <p>Advanced Technology</p>
+            </div>
           </div>
         </div>
-        <div className='down-scroll'>
+        <div className='down-scroll' onClick={skipImage}>
           <Icons.ArrowDown />
         </div>
       </div>

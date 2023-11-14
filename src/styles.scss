@@ -191,10 +191,30 @@ body {
       .pic-details {
         position: absolute;
         img {
-          width: 445px;
-          height: 500px;
+          width: 420px;
+          height: 475px;
           object-fit: cover;
           border-radius: 40px;
+        }
+        &_info {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          top: -65px;
+          color: black;
+          align-items: center;
+
+          p {
+            background: white;
+            border-radius: 27px 25px;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: center;
+
+            &:nth-child(1) {
+              padding: 11px;
+            }
+          }
         }
         &:nth-child(3) {
           transform: rotate(-10deg);
@@ -214,13 +234,17 @@ body {
       text-align: center;
       position: relative;
       top: 75%;
-      font-size: 35px;
+      font-size: 45px;
       left: 50%;
       height: 60px;
       width: 120px;
       border-radius: 150px 150px 0 0;
       border: 1px solid black;
       border-bottom: none;
+      z-index: 2;
+      svg {
+        cursor: pointer;
+      }
     }
   }
 
