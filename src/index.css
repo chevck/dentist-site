@@ -1,6 +1,11 @@
 body {
   font-family: "Raleway", sans-serif;
 }
+
+button {
+  background: none;
+}
+
 .background_one {
   background-color: #fffcf1;
   height: 100vh;
@@ -35,7 +40,7 @@ body {
 
 .theme_bg {
   background-color: #ff582b;
-  border-color: #ff582b;
+  border-color: #ff582b !important;
   color: white;
 }
 
@@ -64,5 +69,3 @@ h4 {
   opacity: 0;
   height: 0;
 }
-
-/* innerHTML: svgMarkUp, */
