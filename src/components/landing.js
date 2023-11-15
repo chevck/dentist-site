@@ -81,6 +81,7 @@ function LandingPage() {
   const thirdDivMainText = ".third-div .main-text";
 
   const startSecondDivAnimation = () => {
+    gsap.to(".introduction-pics", { opacity: 1, ease: "none" });
     gsap.fromTo(
       firstDivMainText,
       {
@@ -191,47 +192,6 @@ function LandingPage() {
       ease: "power2.in",
     });
   };
-
-  // const startThirdDivAnimation = () => {
-  //   console.log("scroll", window.scrollY);
-
-  //   // gsap.to(".explore-flex", {
-  //   //   scrollTrigger: ".explore_flex",
-  //   // });
-  //   const sections = gsap.utils.toArray(".explore-pic");
-  //   const tl = gsap.timeline({
-  //     scrollTrigger: { trigger: "._two" },
-  //   });
-
-  //   // gsap.to(sections, {
-  //   //   yPercent: -10 * (sections.length - 1),
-  //   //   ease: "none",
-  //   //   scrollTrigger: {
-  //   //     pin: "left",
-  //   //     trigger: "._two",
-  //   //     snap: 1 / (sections.length - 1),
-  //   //     scrub: true,
-  //   //   },
-  //   // });
-
-  //   tl.fromTo(
-  //     ".explore-flex_left",
-  //     { y: 0 },
-  //     {
-  //       y: 500,
-  //       ease: "none",
-  //       duration: 0,
-  //       delay: 0,
-  //     }
-  //   );
-  //   tl.to(".explore-flex_right", {
-  //     y: -500,
-  //     scrollBehavior: "",
-  //     ease: "none",
-  //     duration: 0,
-  //     delay: 0,
-  //   });
-  // };
 
   useLayoutEffect(() => {
     startSecondDivAnimation();
