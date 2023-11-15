@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import * as Icons from "react-bootstrap-icons";
 import Tooth from "../assets/tooth.svg";
 import gsap from "gsap";
 import "animate.css";
-// import ScrollTrigger from "gsap/ScrollTrigger";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+import ScrollTrigger from "gsap/ScrollTrigger";
 // import SplitText from "gsap/SplitText";
 // import Img1 from "../assets/img-1.jpg";
 import Img2 from "../assets/img-2.jpg";
@@ -16,6 +17,9 @@ import Hr3 from "../assets/hr-3.jpg";
 import Hr4 from "../assets/hr-4.jpg";
 import FriendVideo from "../assets/friends-1.jpg";
 import ExploreImg1 from "../assets/explore-1.jpg";
+import ExploreImg2 from "../assets/explore-2.jpg";
+import ExploreImg3 from "../assets/explore-3.jpg";
+import ExploreImg4 from "../assets/explore-4.jpg";
 
 const Header = () => {
   return (
@@ -67,35 +71,108 @@ const Footer = () => {
 };
 
 function LandingPage() {
+  gsap.registerPlugin(ScrollToPlugin);
+  const firstDivMainTextRef = useRef();
   const [count, setCount] = useState(4);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".second-div",
-        // start: "top 80%",
-        // end: "bottom 20%",
+        trigger: "._one",
+        start: "top top",
+        end: "+1000",
         scrub: true,
       },
     });
-
-    tl.fromTo(
-      ".hide-first",
+    tl.to(".first-div .main-text", {
+      marginLeft: 0,
+      ease: "power2.in",
+      duration: 2,
+    });
+    tl.to(".first-div .hide-first", { display: "block", duration: 2 }, 1);
+    tl.to(
+      ".second-div .main-text",
       {
-        opacity: 0,
-        // y: 50,
-        duration: 1,
-        xPercent: 50,
-        ease: "power2.out",
+        x: 0,
+        ease: "power2.inOut",
+        duration: 2,
       },
-      {
-        opacity: 1,
-        xPercent: 0,
-        ease: "power3.in",
-        // height: 40,
-        duration: 1,
-        // display: "unset",
-      }
+      1
     );
+    tl.from(".second-div .hide-first", { opacity: 0, duration: 2 }, 1);
+    tl.to(
+      ".second-div .hide-first",
+      {
+        display: "flex",
+        opacity: 1,
+        duration: 2,
+      },
+      1
+    );
+    tl.to(
+      ".third-div .main-text",
+      { marginLeft: 0, ease: "power2.in", duration: 2 },
+      1
+    );
+    // tl.from(".third-div .hide-first", {
+    //   opacity: 0,
+    //   display: "none",
+    // });
+    tl.to(
+      ".third-div .headshots.hide-first",
+      {
+        display: "flex",
+        opacity: 1,
+        duration: 2,
+        ease: "power2.in",
+      },
+      1
+    );
+    tl.to(
+      ".third-div .tech-video.hide-first",
+      {
+        display: "block",
+        opacity: 1,
+        duration: 2,
+        ease: "power2.in",
+      },
+      1
+    );
+  }, []);
+  useEffect(() => {
+    gsap.to(".first-div .main-text", { scrollTrigger: {} });
+    // gsap.fromTo(
+    //   ".first-div .main-text",
+    //   {
+    //     x: "350px",
+    //   },
+    //   { x: "-70px", ease: "power2.in", duration: 4 }
+    // );
+    // gsap.fromTo(
+    //   ".care-flex",
+    //   { display: "none", opacity: 0, ease: "power2.out" },
+    //   {
+    //     display: "flex",
+    //     opacity: 1,
+    //     ease: "power2.in",
+    //     scrollTo: {
+    //       trigger: ".care-flex",
+    //       // trigger: ".hide-first",
+    //       start: "top 80%", // Adjust the start position based on your needs
+    //       end: "bottom 20%", // Adjust the end position based on your needs
+    //       toggleActions: "play reverse play reverse", // Show on scroll down, hide on scroll up
+    //     },
+    //   }
+    // );
+    // gsap.to(".hide-first", {
+    //   opacity: 0,
+    //   y: 50,
+    //   scrollTrigger: {
+    //     trigger: ".hide-first",
+    //     start: "top 80%", // Adjust the start position based on your needs
+    //     end: "bottom 20%", // Adjust the end position based on your needs
+    //     toggleActions: "play reverse play reverse", // Show on scroll down, hide on scroll up
+    //   },
+    // });
   }, []);
 
   const skipImage = () => {
@@ -113,7 +190,15 @@ function LandingPage() {
       });
       return setCount(count - 1);
     }
-    console.log("move to the next page");
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+        y: "#one",
+        offsetY: 110,
+        autoKill: false,
+      },
+      ease: "power2.inOut",
+    });
   };
 
   return (
@@ -164,9 +249,9 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className='landing-page_section _one'>
+      <div className='landing-page_section _one' id='one'>
         <div className='first-div'>
-          <p className='main-text animate__animated animate__slideInUp animate__delay-3s'>
+          <p className='main-text' ref={firstDivMainTextRef}>
             Revolutionizing
           </p>
           <div className='revolution-icon-set hide-first'>
@@ -191,9 +276,7 @@ function LandingPage() {
               <img src={Tooth} alt='tooth' />
             </p>
           </div>
-          <span className='main-text animate__animated animate__slideInUp animate__delay-3s'>
-            Dental
-          </span>
+          <span className='main-text'>Dental</span>
           <div className='care-flex hide-first'>
             <p className='overboard'>
               <img src={Img5} alt='young-girl' />
@@ -202,9 +285,7 @@ function LandingPage() {
               <Icons.Flower3 />
             </p>
           </div>
-          <span className='main-text animate__animated animate__slideInUp animate__delay-3s'>
-            Care
-          </span>
+          <span className='main-text'>Care</span>
         </div>
         <div className='third-div'>
           <div className='tech-video hide-first'>
@@ -213,9 +294,7 @@ function LandingPage() {
               <Icons.Play />
             </p>
           </div>
-          <p className='main-text animate__animated animate__slideInUp animate__delay-3s'>
-            with technology
-          </p>
+          <p className='main-text'>with technology</p>
           <div className='headshots hide-first'>
             <img src={Hr1} alt='hr-1' />
             <img src={Hr2} alt='hr-2' />
@@ -264,18 +343,18 @@ function LandingPage() {
                   <img src={ExploreImg1} alt='explore-1' />
                 </div>
                 <div className='explore-pic'>
-                  <img src={ExploreImg1} alt='explore-1' />
+                  <img src={ExploreImg2} alt='explore-1' />
                 </div>
                 <div className='explore-pic'>
-                  <img src={ExploreImg1} alt='explore-1' />
+                  <img src={ExploreImg3} alt='explore-1' />
                 </div>
               </div>
               <div className='explore-flex_right'>
                 <div className='explore-pic'>
-                  <img src={ExploreImg1} alt='explore-1' />
+                  <img src={ExploreImg3} alt='explore-1' />
                 </div>
                 <div className='explore-pic'>
-                  <img src={ExploreImg1} alt='explore-1' />
+                  <img src={ExploreImg4} alt='explore-1' />
                 </div>
                 <div className='explore-pic'>
                   <img src={ExploreImg1} alt='explore-1' />

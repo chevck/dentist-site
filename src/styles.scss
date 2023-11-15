@@ -1,5 +1,5 @@
 body {
-  font-family: "Raleway", serif;
+  font-family: "Delius", serif;
 }
 
 .pre-landing {
@@ -175,8 +175,9 @@ body {
 
   &-container {
     height: 100vh;
+    text-align: center;
     h2 {
-      font-size: 180px;
+      font-size: 191px;
       text-transform: uppercase;
       position: absolute;
       top: 35%;
@@ -235,7 +236,7 @@ body {
       position: relative;
       top: 75%;
       font-size: 45px;
-      left: 50%;
+      left: 46%;
       height: 60px;
       width: 120px;
       border-radius: 150px 150px 0 0;
@@ -283,8 +284,13 @@ body {
         column-gap: 80px;
         justify-content: center;
 
+        .main-text {
+          margin-left: 350px;
+        }
+
         .revolution-icon-set {
           width: 180px;
+          display: none;
 
           .icons-flex {
             display: flex;
@@ -309,8 +315,10 @@ body {
       .second-div {
         display: flex;
         align-items: center;
+
         .care-flex {
           display: flex;
+          display: none;
           .overboard {
             width: 121px;
             height: 118px;
@@ -339,6 +347,7 @@ body {
         .assistance-section {
           display: flex;
           margin-right: 25px;
+          display: none;
           p {
             &:nth-child(1) {
               background: #b7d9e7;
@@ -363,6 +372,11 @@ body {
       }
       .third-div {
         display: flex;
+
+        .main-text {
+          margin-left: 350px;
+        }
+
         .headshots {
           display: flex;
           align-items: center;
@@ -503,6 +517,9 @@ body {
 
       .right {
         overflow: scroll;
+        position: relative;
+        height: 1300px;
+        bottom: 200px;
         .explore-pic {
           height: 350px;
           width: 315px;
