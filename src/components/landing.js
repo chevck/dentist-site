@@ -86,7 +86,7 @@ function LandingPage() {
       {
         opacity: 0,
         y: 40,
-        x: 300,
+        x: 225,
       },
       {
         scrollTrigger: firstDivMainText,
@@ -132,9 +132,15 @@ function LandingPage() {
   };
 
   const swipeToPositions = () => {
-    gsap.to(".first-div", {
-      x: -230,
+    gsap.to(firstDivMainText, {
+      x: -2,
       duration: 3,
+      ease: "power2.in",
+    });
+    gsap.to(".revolution-icon-set", {
+      opacity: 1,
+      duration: 3,
+      delay: 1,
       ease: "power2.in",
     });
     gsap.fromTo(
@@ -167,10 +173,63 @@ function LandingPage() {
       duration: 3,
       ease: "power2.in",
     });
-    gsap.to(".third-div", {
-      x: -230,
+    gsap.to(".third-div .main-text", {
+      x: 10,
       duration: 3,
       ease: "power2.in",
+    });
+    gsap.to(".headshots", {
+      opacity: 1,
+      duration: 3,
+      delay: 1,
+      ease: "power2.in",
+    });
+    gsap.to(".tech-video", {
+      opacity: 1,
+      duration: 3,
+      delay: 1,
+      ease: "power2.in",
+    });
+  };
+
+  const startThirdDivAnimation = () => {
+    console.log("scroll", window.scrollY);
+
+    // gsap.to(".explore-flex", {
+    //   scrollTrigger: ".explore_flex",
+    // });
+    const sections = gsap.utils.toArray(".explore-pic");
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: "._two" },
+    });
+
+    // gsap.to(sections, {
+    //   yPercent: -10 * (sections.length - 1),
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     pin: "left",
+    //     trigger: "._two",
+    //     snap: 1 / (sections.length - 1),
+    //     scrub: true,
+    //   },
+    // });
+
+    tl.fromTo(
+      ".explore-flex_left",
+      { y: 0 },
+      {
+        y: 500,
+        ease: "none",
+        duration: 0,
+        delay: 0,
+      }
+    );
+    tl.to(".explore-flex_right", {
+      y: -500,
+      scrollBehavior: "",
+      ease: "none",
+      duration: 0,
+      delay: 0,
     });
   };
 
@@ -344,39 +403,36 @@ function LandingPage() {
               <div className='explore-flex_left'>
                 <div className='explore-pic'>
                   <img src={ExploreImg1} alt='explore-1' />
+                  <p className='explore-info'>Oral Health Assessment</p>
                 </div>
                 <div className='explore-pic'>
                   <img src={ExploreImg2} alt='explore-1' />
+                  <p className='explore-info'>dental health records</p>
                 </div>
                 <div className='explore-pic'>
                   <img src={ExploreImg3} alt='explore-1' />
+                  <p className='explore-info'>toothbrush tracking</p>
                 </div>
               </div>
               <div className='explore-flex_right'>
                 <div className='explore-pic'>
                   <img src={ExploreImg3} alt='explore-1' />
+                  <p className='explore-info'>teledentistry consultations</p>
                 </div>
                 <div className='explore-pic'>
                   <img src={ExploreImg4} alt='explore-1' />
+                  <p className='explore-info'>oral care guides</p>
                 </div>
                 <div className='explore-pic'>
                   <img src={ExploreImg1} alt='explore-1' />
+                  <p className='explore-info'>appointment scheduling</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <Footer />
-      {/* <div className='kk'>
-        <div class='stack-container'>
-          <img class='stack-picture' src={Img1} alt='Picture 1' />
-          <img class='stack-picture' src={Img2} alt='Picture 2' />
-          <img class='stack-picture' src={Img3} alt='Picture 3' />
-          
-        </div>
-      </div> */}
     </div>
   );
 }

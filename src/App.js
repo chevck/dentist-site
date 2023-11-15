@@ -4,7 +4,7 @@ import LandingPage from "./components/landing";
 import "./styles.scss";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const viewToRender = () => {
     switch (currentPage) {

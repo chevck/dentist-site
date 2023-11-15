@@ -1,5 +1,5 @@
 body {
-  font-family: "Delius", serif;
+  font-family: "Baloo Da 2", sans-serif;
 }
 
 .pre-landing {
@@ -96,7 +96,7 @@ body {
 }
 
 .hide-first {
-  display: none;
+  // display: none;
 }
 
 .stack-container {
@@ -182,6 +182,7 @@ body {
       position: absolute;
       top: 35%;
       text-align: center;
+      left: 4%;
     }
 
     .introduction-pics {
@@ -284,16 +285,10 @@ body {
         display: flex;
         align-items: center;
         column-gap: 80px;
-        // justify-content: center;
-        // justify-content: flex-end;
-
-        .main-text {
-          // margin-left: 350px;
-        }
 
         .revolution-icon-set {
           width: 180px;
-          display: none;
+          opacity: 0;
 
           .icons-flex {
             display: flex;
@@ -397,7 +392,7 @@ body {
         .headshots {
           display: flex;
           align-items: center;
-          display: none;
+          opacity: 0;
 
           img {
             width: 80px;
@@ -434,7 +429,9 @@ body {
         }
         .tech-video {
           position: absolute;
-          margin-top: 150px;
+          margin-top: 120px;
+          z-index: 1;
+          opacity: 0;
           img {
             width: 300px;
             border-radius: 27px;
@@ -483,7 +480,7 @@ body {
       }
       .main-text {
         text-transform: uppercase;
-        font-size: 135px;
+        font-size: 138px;
         font-weight: 500;
       }
     }
@@ -541,7 +538,7 @@ body {
         bottom: 200px;
         .explore-pic {
           height: 350px;
-          width: 315px;
+          width: 295px;
           border-radius: 25px;
           margin-bottom: 20px;
 
@@ -550,6 +547,18 @@ body {
             width: inherit;
             object-fit: cover;
             border-radius: inherit;
+          }
+
+          .explore-info {
+            border: 1px solid white;
+            width: fit-content;
+            padding: 1px 10px;
+            border-radius: 20px;
+            position: relative;
+            top: -45px;
+            left: 20px;
+            color: white;
+            text-transform: capitalize;
           }
         }
 
