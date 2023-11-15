@@ -113,10 +113,6 @@ function LandingPage() {
       { marginLeft: 0, ease: "power2.in", duration: 2 },
       1
     );
-    // tl.from(".third-div .hide-first", {
-    //   opacity: 0,
-    //   display: "none",
-    // });
     tl.to(
       ".third-div .headshots.hide-first",
       {
