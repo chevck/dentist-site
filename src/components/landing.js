@@ -72,103 +72,110 @@ const Footer = () => {
 
 function LandingPage() {
   gsap.registerPlugin(ScrollToPlugin);
+  gsap.registerPlugin(ScrollTrigger);
   const firstDivMainTextRef = useRef();
   const [count, setCount] = useState(4);
-  useLayoutEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "._one",
-        start: "top top",
-        end: "+1000",
-        scrub: true,
+
+  const firstDivMainText = ".first-div .main-text";
+  const secondDivMainText = ".second-div .main-text";
+  const thirdDivMainText = ".third-div .main-text";
+
+  const startSecondDivAnimation = () => {
+    gsap.fromTo(
+      firstDivMainText,
+      {
+        opacity: 0,
+        y: 40,
+        x: 300,
       },
-    });
-    tl.to(".first-div .main-text", {
-      marginLeft: 0,
+      {
+        scrollTrigger: firstDivMainText,
+        y: 0,
+        opacity: 1,
+        duration: 2,
+        delay: 2,
+      }
+    );
+    gsap.fromTo(
+      secondDivMainText,
+      {
+        opacity: 0,
+        y: 40,
+        x: 65,
+      },
+      {
+        scrollTrigger: secondDivMainText,
+        y: 0,
+        opacity: 1,
+        duration: 2,
+        delay: 2,
+      }
+    );
+    gsap.fromTo(
+      thirdDivMainText,
+      {
+        opacity: 0,
+        y: 40,
+        x: 300,
+      },
+      {
+        scrollTrigger: thirdDivMainText,
+        y: 0,
+        opacity: 1,
+        duration: 2,
+        delay: 2,
+        onComplete: () => {
+          swipeToPositions();
+        },
+      }
+    );
+  };
+
+  const swipeToPositions = () => {
+    gsap.to(".first-div", {
+      x: -230,
+      duration: 3,
       ease: "power2.in",
-      duration: 2,
     });
-    tl.to(".first-div .hide-first", { display: "block", duration: 2 }, 1);
-    tl.to(
-      ".second-div .main-text",
+    gsap.fromTo(
+      ".assistance-section",
+      { opacity: 0 },
       {
-        x: 0,
-        ease: "power2.inOut",
-        duration: 2,
-      },
-      1
-    );
-    tl.from(".second-div .hide-first", { opacity: 0, duration: 2 }, 1);
-    tl.to(
-      ".second-div .hide-first",
-      {
-        display: "flex",
         opacity: 1,
-        duration: 2,
-      },
-      1
-    );
-    tl.to(
-      ".third-div .main-text",
-      { marginLeft: 0, ease: "power2.in", duration: 2 },
-      1
-    );
-    tl.to(
-      ".third-div .headshots.hide-first",
-      {
-        display: "flex",
-        opacity: 1,
-        duration: 2,
+        duration: 3,
+        delay: 1,
         ease: "power2.in",
-      },
-      1
+      }
     );
-    tl.to(
-      ".third-div .tech-video.hide-first",
+    gsap.fromTo(
+      ".care-flex",
+      { opacity: 0 },
       {
-        display: "block",
         opacity: 1,
-        duration: 2,
+        duration: 3,
+        delay: 1,
         ease: "power2.in",
-      },
-      1
+      }
     );
-  }, []);
-  useEffect(() => {
-    gsap.to(".first-div .main-text", { scrollTrigger: {} });
-    // gsap.fromTo(
-    //   ".first-div .main-text",
-    //   {
-    //     x: "350px",
-    //   },
-    //   { x: "-70px", ease: "power2.in", duration: 4 }
-    // );
-    // gsap.fromTo(
-    //   ".care-flex",
-    //   { display: "none", opacity: 0, ease: "power2.out" },
-    //   {
-    //     display: "flex",
-    //     opacity: 1,
-    //     ease: "power2.in",
-    //     scrollTo: {
-    //       trigger: ".care-flex",
-    //       // trigger: ".hide-first",
-    //       start: "top 80%", // Adjust the start position based on your needs
-    //       end: "bottom 20%", // Adjust the end position based on your needs
-    //       toggleActions: "play reverse play reverse", // Show on scroll down, hide on scroll up
-    //     },
-    //   }
-    // );
-    // gsap.to(".hide-first", {
-    //   opacity: 0,
-    //   y: 50,
-    //   scrollTrigger: {
-    //     trigger: ".hide-first",
-    //     start: "top 80%", // Adjust the start position based on your needs
-    //     end: "bottom 20%", // Adjust the end position based on your needs
-    //     toggleActions: "play reverse play reverse", // Show on scroll down, hide on scroll up
-    //   },
-    // });
+    gsap.to(".dental_", {
+      x: 290,
+      duration: 3,
+      ease: "power2.in",
+    });
+    gsap.to(".care_", {
+      x: 510,
+      duration: 3,
+      ease: "power2.in",
+    });
+    gsap.to(".third-div", {
+      x: -230,
+      duration: 3,
+      ease: "power2.in",
+    });
+  };
+
+  useLayoutEffect(() => {
+    startSecondDivAnimation();
   }, []);
 
   const skipImage = () => {
@@ -272,7 +279,7 @@ function LandingPage() {
               <img src={Tooth} alt='tooth' />
             </p>
           </div>
-          <span className='main-text'>Dental</span>
+          <p className='main-text dental_'>Dental</p>
           <div className='care-flex hide-first'>
             <p className='overboard'>
               <img src={Img5} alt='young-girl' />
@@ -281,7 +288,7 @@ function LandingPage() {
               <Icons.Flower3 />
             </p>
           </div>
-          <span className='main-text'>Care</span>
+          <p className='main-text care_'>Care</p>
         </div>
         <div className='third-div'>
           <div className='tech-video hide-first'>

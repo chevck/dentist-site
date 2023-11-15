@@ -96,7 +96,7 @@ body {
 }
 
 .hide-first {
-  // display: none;
+  display: none;
 }
 
 .stack-container {
@@ -278,14 +278,17 @@ body {
 
   &_section {
     &._one {
+      padding: 0px 60px;
+
       .first-div {
         display: flex;
         align-items: center;
         column-gap: 80px;
-        justify-content: center;
+        // justify-content: center;
+        // justify-content: flex-end;
 
         .main-text {
-          margin-left: 350px;
+          // margin-left: 350px;
         }
 
         .revolution-icon-set {
@@ -316,9 +319,21 @@ body {
         display: flex;
         align-items: center;
 
+        // justify-content: flex-start;
+
+        .dental_ {
+          position: relative;
+          left: -300px;
+        }
+
+        .care_ {
+          position: relative;
+          left: -500px;
+        }
+
         .care-flex {
           display: flex;
-          display: none;
+          opacity: 0;
           .overboard {
             width: 121px;
             height: 118px;
@@ -347,7 +362,8 @@ body {
         .assistance-section {
           display: flex;
           margin-right: 25px;
-          display: none;
+          opacity: 0;
+
           p {
             &:nth-child(1) {
               background: #b7d9e7;
@@ -372,14 +388,17 @@ body {
       }
       .third-div {
         display: flex;
+        // justify-content: flex-end;
 
         .main-text {
-          margin-left: 350px;
+          // margin-left: 350px;
         }
 
         .headshots {
           display: flex;
           align-items: center;
+          display: none;
+
           img {
             width: 80px;
             height: 80px;
